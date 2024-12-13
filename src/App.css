@@ -1,0 +1,18 @@
+.container {
+  margin: auto;
+}
+
+input {
+  width: 100%;
+}
+.todo-items {
+  text-align: left;
+}
+
+.row-mg {
+  margin: 8px;
+}
+
+.btn {
+  min-width: 100px;
+}
