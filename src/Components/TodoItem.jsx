@@ -1,9 +1,8 @@
-export function TodoItem(props) {
-  let {todoItem,todoDate}=props;
-  console.log("items",props)
+import { RiDeleteBin2Fill } from "react-icons/ri";
+export function TodoItem({todoItem,todoDate,handleDelete}) {
   return (
-    <div className="container todo-items">
-      <div className="row justify-content-md-center row-mg">
+    <div className="container todo-items"  >
+      <div  key={todoItem} className="row justify-content-md-center row-mg">
         <div className="col-3">
           <p>{todoItem}</p>
         </div>
@@ -11,8 +10,8 @@ export function TodoItem(props) {
           <p>{todoDate}</p>
         </div>
         <div className="col-1 ">
-          <button type="button" className="btn btn-danger">
-            Delete
+          <button type="button" className="btn btn-danger" onClick={()=>{handleDelete(todoItem)}}>
+          <RiDeleteBin2Fill />
           </button>
         </div>
       </div>

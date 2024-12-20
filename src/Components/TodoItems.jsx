@@ -1,9 +1,9 @@
 import { TodoItem } from "./TodoItem";
-const TodoItems = ({todos}) => {
+const TodoItems = ({todos,handleDelete }) => {
   return (
     <>
     {todos.map(item =>(
-     <TodoItem key="item.name" todoItem={item.name} todoDate={item.date}></TodoItem>
+     <TodoItem  key={item.name}  todoItem={item.name} todoDate={item.date} handleDelete={handleDelete}></TodoItem>
     ))}
     </>
   );
