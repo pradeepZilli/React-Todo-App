@@ -1,38 +1,36 @@
-import { useState } from "react";
+import { useRef, useContext } from "react";
 import { MdAddToPhotos } from "react-icons/md";
 
-export function AddTodo({handleAdd}) {
-  let [inputTodo,setInputTodo]=useState("");
-  let [inputDate,setInputDate]=useState("");
+import { TodoItemContext } from "../Store/todo-items-store";
 
-  const onChangeTodo=(event)=>{ 
-      setInputTodo(event.target.value);
-  }
+export function AddTodo() {
+  const todoName = useRef();
+  const dueDate = useRef();
+  const { addNewItem } = useContext(TodoItemContext);
 
-  const onChangeDate=(event)=>{
-    setInputDate(event.target.value);
-  }
-
-  const handleOnClick=(event)=>{
-    console.log(event)
+  const handleSubmit = (event) => {
     event.preventDefault();
-    handleAdd(inputTodo,inputDate);
-    setInputTodo("");
-    setInputDate("");
-
-  }
+    let todo = todoName.current.value;
+    let date = dueDate.current.value;
+    todoName.current.value = "";
+    dueDate.current.value = "";
+    addNewItem(todo, date);
+  };
   return (
     <div className="container ">
-      <form className="row justify-content-md-center row-mg" onSubmit={handleOnClick}>
+      <form
+        className="row justify-content-md-center row-mg"
+        onSubmit={handleSubmit}
+      >
         <div className="col-3">
-          <input type="text" placeholder="Enter todo here" value={inputTodo} onChange={onChangeTodo}/>
+          <input type="text" ref={todoName} placeholder="Enter todo here" />
         </div>
         <div className="col-2">
-          <input type="date"  value={inputDate} onChange={onChangeDate}/>
+          <input type="date" ref={dueDate} />
         </div>
         <div className="col-1 ">
-          <button  type="submit"  className="btn btn-success" >
-          <MdAddToPhotos />
+          <button type="submit" className="btn btn-success" title="add todo">
+            <MdAddToPhotos />
           </button>
         </div>
       </form>
